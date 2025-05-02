@@ -7,7 +7,7 @@ export const Home = () => {
 	//<Greeting message='¡Bienvenido a Comercio Justiniano!' />
 	return (
 		<>
-		<Greeting message='¡Bienvenido a Comercio Justiniano!' />
+		<Greeting message='¡Bienvenido a Comercio Justiniano! (productos abajo 👇)' />
 		{
 			loading ? (<Loader/>) : (<ItemListContainer products={products}/>)
 		}

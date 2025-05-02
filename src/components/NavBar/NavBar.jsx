@@ -1,9 +1,3 @@
-//import './NavBar.css'
-/*export const NavBar = ({text = 'hola'}) => {
-	return <div className="container">{text}</div>
-};
-*/
-
 'use client'
 
 import {
@@ -23,39 +17,25 @@ import {
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon, ChevronDownIcon} from '@chakra-ui/icons'
 import { CartWidget } from '../CartWidget'
-
-// Mock data
-const MOCK_CAT = [
-	{
-		id: 0,
-		label: "Categoría 0"
-	},
-	{
-		id: 1,
-		label: "Categoría 1"
-	},
-	{
-		id: 2,
-		label: "Categoría 2"
-	}
-]
+import { Link } from 'react-router-dom'
+import { useCategories } from '../../hooks/'
 
 export const NavBar = () => {
-	const { colorMode, toggleColorMode } = useColorMode()
+	const {categories,loading} = useCategories();
+	const { colorMode, toggleColorMode } = useColorMode();
 	return (
 		<>
 		<Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
 			<Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-			<Box>Comercio Justiniano</Box>
+			<Box><Link to={'/'}>Comercio Justiniano</Link></Box>
 			<Menu>
 				<MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
 					Categorías
 				</MenuButton>
-				<MenuList>
-					{
-						MOCK_CAT.map((category) => {
-							return <MenuItem key={category.id}>{category.label}</MenuItem>
-						})
+				<MenuList overflow={'scroll'} maxHeight={'400px'} maxWidth={'400px'}>
+					{!loading ? categories.map((category) => {
+							return <Link key={category.slug} to={`/category/${category.slug}`}><MenuItem>{category.name}</MenuItem></Link>
+						}) : null
 					}
 				</MenuList>
 			</Menu>

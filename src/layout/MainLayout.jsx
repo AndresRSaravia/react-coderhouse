@@ -6,7 +6,7 @@ export const MainLayout = ({children}) => {
 	return (
 		<>
 			<NavBar/>
-			<Box w={'100vw'}><Outlet/></Box>
+			<Box w={'100%'}><Outlet/></Box>
 		</>
 	);
 };

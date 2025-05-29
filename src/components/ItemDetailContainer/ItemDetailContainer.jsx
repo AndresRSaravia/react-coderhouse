@@ -1,4 +1,5 @@
 import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";
+import { Counter } from "../Counter/Counter";
 
 'use client'
 
@@ -11,16 +12,13 @@ import {
 	Image,
 	Flex,
 	VStack,
-	Button,
 	Heading,
 	SimpleGrid,
 	StackDivider,
 	useColorModeValue,
-	VisuallyHidden,
 	List,
 	ListItem,
 } from '@chakra-ui/react'
-import { MdLocalShipping } from 'react-icons/md'
 
 export const ItemDetailContainer = ({product}) => {
 	return (
@@ -73,45 +71,31 @@ export const ItemDetailContainer = ({product}) => {
 					fontWeight={'500'}
 					textTransform={'uppercase'}
 					mb={'4'}>
-					Product Details
+					Detalles del producto
 				</Text>
 				<List spacing={2}>
 					<ListItem>
 					<Text as={'span'} fontWeight={'bold'}>
-						Depth:
+						Espesor:
 					</Text>{' '}
 					{product.dimensions.depth}
 					</ListItem>
 					<ListItem>
 					<Text as={'span'} fontWeight={'bold'}>
-						Height:
+						Alto:
 					</Text>{' '}
 					{product.dimensions.height}
 					</ListItem>
 					<ListItem>
 					<Text as={'span'} fontWeight={'bold'}>
-						Width:
+						Ancho:
 					</Text>{' '}
 					{product.dimensions.width}
 					</ListItem>
 				</List>
 				</Box>
 			</Stack>
-			<Button
-				rounded={'none'}
-				w={'full'}
-				mt={8}
-				size={'lg'}
-				py={'7'}
-				bg={useColorModeValue('gray.900', 'gray.50')}
-				color={useColorModeValue('white', 'gray.900')}
-				textTransform={'uppercase'}
-				_hover={{
-				transform: 'translateY(2px)',
-				boxShadow: 'lg',
-				}}>
-				Add to cart
-			</Button>
+			<Counter product={product}/>
 			</Stack>
 		</SimpleGrid>
 		</Container>

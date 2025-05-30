@@ -19,6 +19,7 @@ import { MoonIcon, SunIcon, ChevronDownIcon} from '@chakra-ui/icons'
 import { CartWidget } from '../CartWidget'
 import { Link } from 'react-router-dom'
 import { useCategories } from '../../hooks/'
+import { createProductsFirestore } from '../../helpers'
 
 export const NavBar = () => {
 	const {categories,loading} = useCategories();
@@ -32,7 +33,7 @@ export const NavBar = () => {
 				<MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
 					Categorías
 				</MenuButton>
-				<MenuList overflow={'scroll'} maxHeight={'400px'} maxWidth={'400px'}>
+				<MenuList overflowY={'scroll'} maxHeight={'400px'} maxWidth={'400px'}>
 					{!loading ? categories.map((category) => {
 							return <Link key={category.slug} to={`/category/${category.slug}`}><MenuItem>{category.name}</MenuItem></Link>
 						}) : null
@@ -45,6 +46,9 @@ export const NavBar = () => {
 				<Stack direction={'row'} spacing={7}>
 				<Button onClick={toggleColorMode}>
 					{colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+				</Button>
+				<Button onClick={() => createProductsFirestore("products")}>
+					Crear prod/cat (hecho)
 				</Button>
 				<Menu>
 					<MenuButton

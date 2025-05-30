@@ -1,26 +1,25 @@
-import { Alert, AlertIcon, AlertTitle, AlertDescription, Flex, Text } from "@chakra-ui/react";
+import { Box, SimpleGrid, Alert, AlertIcon, AlertTitle, AlertDescription, Flex, Text } from "@chakra-ui/react";
 import { ProductCard } from "../ProductCard";
 
 export const ItemListContainer = ({products}) => {
-	//JSON.stringify(products,null,2)
+
+	    <Box width={"100%"} overflowX={"hidden"} p={4}>
+      <SimpleGrid columns={{ sm: 2, md: 3, lg: 4 }} spacing={4} width={"100%"}>
+        {products.map((product) => {
+          return <ProductCard key={product.id} product={product} />;
+        })}
+      </SimpleGrid>
+    </Box>
+
 	return (
 		products.length !== 0 ? (
-			<Flex
-				fontSize={14}
-				flexWrap={"wrap"}
-				flexDirection={"column"}
-			>
+		<Box width={"100%"} overflowX={"hidden"} p={4}>
+			<SimpleGrid columns={{ sm: 2, md: 3, lg: 4 }} spacing={4} width={"100%"}>
 				{products.map((product) => {
-					return (
-						<ProductCard key={product.id} product={product}/>
-						//<Flex key={product.id} justifyContent={"center"}>
-						//	<Text>Título: {product.title}</Text>
-						//	<Text>Descripción: {product.description}</Text>
-						//	<Text>Precio: {product.price}</Text>
-						//</Flex>
-					);
+					return (<ProductCard key={product.id} product={product}/>);
 				})}
-			</Flex>
+			</SimpleGrid>
+		</Box>
 		) :
 		(
 			<Alert status="info">

@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, Category, Item, Cart } from "../pages";
+import { Home, Category, Item, Cart, Checkout } from "../pages";
 import { MainLayout } from "../layout/MainLayout";
 
 const routes = [
@@ -22,6 +22,10 @@ const routes = [
 			{
 				path: '/cart',
 				element: <Cart/>
+			},
+			{
+				path: '/checkout',
+				element: <Checkout/>
 			}
 		]
 	},

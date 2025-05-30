@@ -11,17 +11,18 @@ import {
 	Spacer,
 	Divider,
 	Image,
+	Button,
 } from "@chakra-ui/react";
 import { MinusIcon, AddIcon, DeleteIcon } from "@chakra-ui/icons";
 import { useCustomProductsStore } from "../hooks";
+import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
-	const { cartState, addItem, remItem, delItem, totalPrice } =
-		useCustomProductsStore();
-
+	const { cartState, addItem, remItem, delItem, totalPrice } = useCustomProductsStore();
 	const handleDeleteItem = (itemId) => {
 		delItem(itemId);
 	};
+	const navigate = useNavigate();
 
 	return (
 		<Box p={6} maxW="800px" mx="auto" h={"90vh"}>
@@ -99,6 +100,15 @@ export const Cart = () => {
 							Total: ${totalPrice.toFixed(2)}
 						</Text>
 						<Spacer />
+					</Flex>
+					<Flex
+						alignItems={'center'}
+						fontSize={20}
+						marginRight={5}
+						justifyContent={'space-between'}
+						width={'50px'}
+						onClick={() => navigate('/checkout')}>
+							<Button>Comprar</Button>
 					</Flex>
 				</VStack>
 			)}

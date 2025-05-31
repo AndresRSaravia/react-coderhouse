@@ -48,5 +48,9 @@ export const useProductsStore = create((set) => ({
 	getTotalPrice: () => {
 		const state = useProductsStore.getState()
 		return state.cart.reduce((total,item) => total+item.quantity*item.price,0)
-	}
+	},
+	checkoutCart: () =>
+		set((state) => {
+			return {cart: []}
+	}),
 }))

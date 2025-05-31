@@ -14,6 +14,7 @@ export const Checkout = () => {
 	});
 	const cartState = useProductsStore((state) => state.cart);
 	const total = useProductsStore((state) => state.getTotalPrice());
+	const checkoutCart = useProductsStore((state) => state.checkoutCart);
 	const navigate = useNavigate();
 
 	const handleSubmit = (e) => {
@@ -40,6 +41,7 @@ export const Checkout = () => {
 			confirmButtonText: "Ir al inicio",
 			}).then((result) => {
 			if (result.isConfirmed) {
+				checkoutCart()
 				navigate("/");
 			}
 			});

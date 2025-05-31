@@ -29,24 +29,25 @@ export const Checkout = () => {
 			})),
 			total,
 		};
-
-		const collectionName = collection(db, "purchases");
-		addDoc(collectionName, data)
-		.then(({ id }) => {
-			Swal.fire({
-			title: "¡Compra efectuada!",
-			text: `Tu código de compra es: ${id}`,
-			icon: "success",
-			draggable: true,
-			confirmButtonText: "Ir al inicio",
-			}).then((result) => {
-			if (result.isConfirmed) {
-				checkoutCart()
-				navigate("/");
-			}
-			});
-		})
-		.catch((error) => console.error(error));
+		if (total>0) {
+			const collectionName = collection(db, "purchases");
+			addDoc(collectionName, data)
+			checkoutCart()
+			.then(({ id }) => {
+				Swal.fire({
+				title: "¡Compra efectuada!",
+				text: `Tu código de compra es: ${id}`,
+				icon: "success",
+				draggable: true,
+				confirmButtonText: "Ir al inicio",
+				}).then((result) => {
+				if (result.isConfirmed) {
+					navigate("/");
+				}
+				});
+			})
+			.catch((error) => console.error(error));
+		}
 	};
 
 	return (
